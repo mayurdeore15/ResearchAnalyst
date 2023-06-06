@@ -58,13 +58,11 @@ public class DataUtil {
 				String value=xls.getCellData(testDataSheet, column, row);
 				
 				map.put(key,value);
-				
 			}
-			
 			obj[i][0]=map;
 		
 		}	
-		
+
 		return obj;
 	
 	}
@@ -87,15 +85,49 @@ public class DataUtil {
 					return true;
 				else
 					return false;
-				
 			}
-			else {
-				System.out.println("Test Name not available");
-			}
-			
 		}
 		
 		return false;
 		
 	}
+
+
+	public static void setTestData(MyXLSReader xls_received, String testName, String sheetName, String columnName, String Row, int Value) throws Exception{
+
+		MyXLSReader xls = xls_received;
+		String testCaseName = testName;
+		String testDataSheet = sheetName;
+		String testValue = String.valueOf(Value);
+
+		int testStartRowNumber=1;
+		while(!(xls.getCellData(testDataSheet, 1, testStartRowNumber).equals(testCaseName))){
+			testStartRowNumber++;
+		}
+		int columnStartRowNumber = testStartRowNumber+1;
+		int dataStartRowNumber = testStartRowNumber+2;
+		int rows=0;
+		while(!(xls.getCellData(testDataSheet, 1, dataStartRowNumber+rows).equals(""))){
+			rows++;
+		}
+		//Total number of columns in the required test
+		int columns=1;
+		while(!(xls.getCellData(testDataSheet, columns, columnStartRowNumber).equals(""))){
+			columns++;
+		}
+		int ColumnNumber =1;
+		while(!(xls.getCellData(testDataSheet, ColumnNumber, columnStartRowNumber).equals(columnName))){
+			ColumnNumber++;
+		}
+		System.out.println(ColumnNumber);
+
+//		int ColNum = xls.getColumnNum(sheetName,);
+		//int RowNum = xls.getCellRowNum(sheetName,"Designation",Row);
+
+
+		xls.setCellData(testDataSheet,columnName,3,testValue);
+	}
 }
+
+
+

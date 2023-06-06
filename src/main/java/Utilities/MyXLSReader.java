@@ -470,6 +470,7 @@ public class MyXLSReader {
 		public int getCellRowNum(String sheetName,String colName,String cellValue){
 			
 			for(int i=1;i<=getRowCount(sheetName);i++){
+//				System.out.println(getCellData(sheetName,colName,i));
 		    	if(getCellData(sheetName,colName,i).equalsIgnoreCase(cellValue)){
 		    		return i;
 		    	}
@@ -477,6 +478,24 @@ public class MyXLSReader {
 			return -1;
 			
 		}
-		
-		
+	public int getCellRowNum(String sheetName,int colNum,String cellValue){
+
+		for(int i=1;i<=getRowCount(sheetName);i++){
+			if(getCellData(sheetName,colNum,i).equalsIgnoreCase(cellValue)){
+				return i;
+			}
+		}
+		return -1;
+
+	}
+	public int getColumnNum(String sheetName, int RowNum , String cellValue){
+		for(int i=1;i<=getColumnCount(sheetName);i++){
+			if(getCellData(sheetName,i,RowNum).equalsIgnoreCase(cellValue)){
+				return i;
+			}
+		}
+		return -1;
+	}
+
+
 }

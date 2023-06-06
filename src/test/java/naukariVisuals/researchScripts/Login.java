@@ -1,7 +1,7 @@
 package naukariVisuals.researchScripts;
 
 import naukariVisuals.pageObjects.HomePage;
-import setUp.BaseClass;
+import setUp.TestBase;
 import Utilities.DataUtil;
 import Utilities.MyXLSReader;
 
@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 import java.util.HashMap;
 
-public class Login extends BaseClass {
+public class Login extends TestBase {
     WebDriver driver;
     MyXLSReader excelReader;
 

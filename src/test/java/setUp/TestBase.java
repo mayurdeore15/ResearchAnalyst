@@ -11,21 +11,17 @@ import java.io.FileInputStream;
 import java.time.Duration;
 import java.util.Properties;
 
-public class BaseClass {
+public class TestBase {
     public WebDriver driver;
     public WebDriver openBrowser(String browserName){
-
         Properties prop = new Properties();
         File PropFile = new File("src\\test\\resources\\Properties\\Global.properties");
-
         try{
             FileInputStream fis = new FileInputStream(PropFile);
             prop.load(fis);
-
         }catch (Throwable e){
             e.printStackTrace();
         }
-
         if(browserName.equalsIgnoreCase("Chrome")){
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
