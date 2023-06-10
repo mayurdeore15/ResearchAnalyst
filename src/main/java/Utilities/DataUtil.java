@@ -58,13 +58,11 @@ public class DataUtil {
 				String value=xls.getCellData(testDataSheet, column, row);
 				
 				map.put(key,value);
-				
 			}
-			
 			obj[i][0]=map;
 		
 		}	
-		
+
 		return obj;
 	
 	}
@@ -87,15 +85,33 @@ public class DataUtil {
 					return true;
 				else
 					return false;
-				
 			}
-			else {
-				System.out.println("Test Name not available");
-			}
-			
 		}
 		
 		return false;
 		
 	}
+
+
+	public static void setTestData(MyXLSReader xls_received, String testName, String sheetName, int Reference_ColNum,int Target_ColNum, String Reference_RowValue, int Value) throws Exception{
+
+		MyXLSReader xls = xls_received;
+		String testCaseName = testName;
+		String testDataSheet = sheetName;
+		String Target_Value = String.valueOf(Value);
+
+		int testStartRowNumber=1;
+		while(!(xls.getCellData(testDataSheet, 1, testStartRowNumber).equals(testCaseName))){
+			testStartRowNumber++;
+		}
+		int columnStartRowNumber = testStartRowNumber+1;
+		int dataStartRowNumber = testStartRowNumber+2;
+
+
+		int Target_RowNum = xls.getCellRowNum(sheetName,Reference_ColNum,Reference_RowValue);
+		xls.setCellData(testDataSheet,Target_ColNum,Target_RowNum,Target_Value);
+	}
 }
+
+
+
