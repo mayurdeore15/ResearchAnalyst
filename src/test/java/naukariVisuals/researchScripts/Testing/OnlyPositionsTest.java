@@ -28,7 +28,7 @@ public class OnlyPositionsTest extends TestBase {
         homePage.sendKeys_KeyWord(hMap.get("Designation"));
         homePage.click_Search();
         int TotalJob = homePage.getJobCount();
-        DataUtil.setTestData(excelReader, "OnlyPositions", "Data", "TotalJobs",hMap.get("Designation"),TotalJob );
+        DataUtil.setTestData(excelReader, "OnlyPositions", "Data", 3,5,hMap.get("Designation"),TotalJob);
         System.out.println(TotalJob);
         System.out.println("test completed");
     }

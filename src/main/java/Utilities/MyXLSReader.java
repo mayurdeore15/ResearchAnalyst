@@ -230,8 +230,52 @@ public class MyXLSReader {
 				return false;
 			}
 			return true;
-		}	
-	
+		}
+
+	public boolean setCellData(String sheetName,int colNum,int rowNum, String data){
+		try{
+			//fis = new FileInputStream(filepath);
+			//workbook = new XSSFWorkbook(fis);
+
+			if(rowNum<=0)
+				return false;
+
+			int sheetIndex = workbook.getSheetIndex(sheetName);
+			if(sheetIndex==-1)
+				return false;
+			sheet = workbook.getSheetAt(sheetIndex);
+
+			if(colNum==-1)
+				return false;
+
+			sheet.autoSizeColumn(colNum);
+			row = sheet.getRow(rowNum-1);
+			if (row == null)
+				row = sheet.createRow(rowNum-1);
+
+			cell = row.getCell(colNum);
+			if (cell == null)
+				cell = row.createCell(colNum);
+
+			// cell style
+			CellStyle cs = workbook.createCellStyle();
+			cs.setWrapText(true);
+			cell.setCellStyle(cs);
+			cell.setCellValue(data);
+
+			fileOut = new FileOutputStream(filepath);
+
+			workbook.write(fileOut);
+
+			fileOut.close();
+
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 		// returns true if data is set successfully else false
 		public boolean setCellData(String sheetName,String colName,int rowNum, String data,String url){
 			//System.out.println("setCellData setCellData******************");
