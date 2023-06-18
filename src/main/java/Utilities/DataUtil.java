@@ -93,7 +93,7 @@ public class DataUtil {
 	}
 
 
-	public static void setTestData(MyXLSReader xls_received, String testName, String sheetName, int Reference_ColNum,int Target_ColNum, String Reference_RowValue, int Value) throws Exception{
+	public static void setIntTestData(MyXLSReader xls_received, String testName, String sheetName, int Reference_ColNum,int Target_ColNum, String Reference_RowValue, int Value) throws Exception{
 
 		MyXLSReader xls = xls_received;
 		String testCaseName = testName;
@@ -107,6 +107,22 @@ public class DataUtil {
 		int columnStartRowNumber = testStartRowNumber+1;
 		int dataStartRowNumber = testStartRowNumber+2;
 
+		int Target_RowNum = xls.getCellRowNum(sheetName,Reference_ColNum,Reference_RowValue);
+		xls.setCellData(testDataSheet,Target_ColNum,Target_RowNum,Target_Value);
+	}
+	public static void setStringTestData(MyXLSReader xls_received, String testName, String sheetName, int Reference_ColNum,int Target_ColNum, String Reference_RowValue, String Value) throws Exception{
+
+		MyXLSReader xls = xls_received;
+		String testCaseName = testName;
+		String testDataSheet = sheetName;
+		String Target_Value = Value;
+
+		int testStartRowNumber=1;
+		while(!(xls.getCellData(testDataSheet, 1, testStartRowNumber).equals(testCaseName))){
+			testStartRowNumber++;
+		}
+		int columnStartRowNumber = testStartRowNumber+1;
+		int dataStartRowNumber = testStartRowNumber+2;
 
 		int Target_RowNum = xls.getCellRowNum(sheetName,Reference_ColNum,Reference_RowValue);
 		xls.setCellData(testDataSheet,Target_ColNum,Target_RowNum,Target_Value);

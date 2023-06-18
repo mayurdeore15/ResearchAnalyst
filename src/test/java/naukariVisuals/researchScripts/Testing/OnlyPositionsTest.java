@@ -2,7 +2,7 @@ package naukariVisuals.researchScripts.Testing;
 
 import Utilities.DataUtil;
 import Utilities.MyXLSReader;
-import naukariVisuals.pageObjects.HomePage;
+import naukariVisuals.pageObjects.NaukariHomePage;
 import org.openqa.selenium.WebDriver;
 import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
@@ -22,13 +22,13 @@ public class OnlyPositionsTest extends TestBase {
             throw new SkipException("Run Mode is set as NO , Hence skipping this testcase");
         }
         driver = openBrowser(hMap.get("Browser"));
-        HomePage homePage= new HomePage(driver);
-        homePage.click_SearchJobHere();
-        homePage.click_EnterKeyWord();
-        homePage.sendKeys_KeyWord(hMap.get("Designation"));
-        homePage.click_Search();
-        int TotalJob = homePage.getJobCount();
-        DataUtil.setTestData(excelReader, "OnlyPositions", "Data", 3,5,hMap.get("Designation"),TotalJob);
+        NaukariHomePage naukariHomePage= new NaukariHomePage(driver);
+        naukariHomePage.click_SearchJobHere();
+        naukariHomePage.click_EnterKeyWord();
+        naukariHomePage.sendKeys_KeyWord(hMap.get("Designation"));
+        naukariHomePage.click_Search();
+        int TotalJob = naukariHomePage.getJobCount();
+        DataUtil.setIntTestData(excelReader, "OnlyPositions", "Data", 3,5,hMap.get("Designation"),TotalJob);
         System.out.println(TotalJob);
         System.out.println("test completed");
     }

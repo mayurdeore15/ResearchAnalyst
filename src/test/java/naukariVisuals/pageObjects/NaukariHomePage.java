@@ -4,19 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import setUp.GenericUtils;
 
 import java.time.Duration;
 
-public class HomePage {
+public class NaukariHomePage {
     WebDriver driver;
     WebDriverWait wait;
     GenericUtils genericUtils;
 
-    public HomePage(WebDriver driver){
+    public NaukariHomePage(WebDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver,this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -34,9 +32,6 @@ public class HomePage {
     @FindBy(xpath = "//div[@class='h1-wrapper']/span")
     private WebElement jobCount_text;
 
-    public void clickOnMyAccountDropMenu(){
-        myAccountDropMenu.click();
-    }
 
     public void click_SearchJobHere() {
         genericUtils.clickElement(serchJobHere_SearchBar);

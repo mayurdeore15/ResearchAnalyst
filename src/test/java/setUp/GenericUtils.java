@@ -1,9 +1,6 @@
 package setUp;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -30,6 +27,21 @@ public class GenericUtils {
         wait.until(ExpectedConditions.visibilityOf(element));
         String text = element.getText();
         return text;
+    }
+
+    public void clickEnter(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        element.sendKeys(Keys.ENTER);
+    }
+
+    public WebElement findElementByLinkText(String element) {
+        WebElement ele = driver.findElement(By.linkText(element));
+        return ele;
+    }
+
+    public void scrollTo(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
 }
