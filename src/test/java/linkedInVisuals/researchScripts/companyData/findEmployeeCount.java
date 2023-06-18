@@ -15,11 +15,6 @@ public class findEmployeeCount extends TestBase {
     WebDriver driver;
     MyXLSReader excelReader;
 
-
-//    public findEmployeeCount(WebDriver driver){
-//        this.driver=driver;
-//    }
-
     @BeforeTest
     public void Login() throws IOException {
         driver = openBrowser();
@@ -32,7 +27,6 @@ public class findEmployeeCount extends TestBase {
             throw new SkipException("Run Mode is set as NO , Hence skipping this testcase");
         }
         LinkedInHomePage linkedInHomePage= new LinkedInHomePage(driver);
-//        linkedInHomePage.Login("mayur4945@gmail.com","DW@mjd99");
         linkedInHomePage.SearchCompany(hMap.get("CompanyName"));
         linkedInHomePage.NavigateToCompanySize();
 
@@ -51,17 +45,6 @@ public class findEmployeeCount extends TestBase {
             driver.quit();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 
     @DataProvider
     public Object[][] dataSupplier(){
