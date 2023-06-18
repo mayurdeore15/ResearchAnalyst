@@ -23,16 +23,9 @@ public class TestBase {
         prop.load(fis);
         String URL = prop.getProperty("URL");
         String browser_properties = prop.getProperty("browser");
-        System.out.println(browser_properties);
         String browser_maven = System.getProperty("browser");
         String browser = browser_maven != null? browser_maven : browser_properties;
 
-//        try{
-//            FileInputStream fis = new FileInputStream(PropFile);
-//            prop.load(fis);
-//        }catch (Throwable e){
-//            e.printStackTrace();
-//        }
         if(browser.equalsIgnoreCase("Chrome")){
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
@@ -45,8 +38,6 @@ public class TestBase {
         }else {
             System.out.println("Please add browser name");
         }
-
-
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(URL);
