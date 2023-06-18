@@ -8,33 +8,45 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
 public class TestBase {
     public WebDriver driver;
-    public WebDriver openBrowser(String browserName){
-        Properties prop = new Properties();
+    public WebDriver openBrowser() throws IOException {
+
         File PropFile = new File("src\\test\\resources\\Properties\\Global.properties");
-        try{
-            FileInputStream fis = new FileInputStream(PropFile);
-            prop.load(fis);
-        }catch (Throwable e){
-            e.printStackTrace();
-        }
-        if(browserName.equalsIgnoreCase("Chrome")){
+        Properties prop = new Properties();
+        FileInputStream fis = new FileInputStream(PropFile);
+        prop.load(fis);
+        String URL = prop.getProperty("URL");
+        String browser_properties = prop.getProperty("browser");
+        System.out.println(browser_properties);
+        String browser_maven = System.getProperty("browser");
+        String browser = browser_maven != null? browser_maven : browser_properties;
+
+//        try{
+//            FileInputStream fis = new FileInputStream(PropFile);
+//            prop.load(fis);
+//        }catch (Throwable e){
+//            e.printStackTrace();
+//        }
+        if(browser.equalsIgnoreCase("Chrome")){
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
-        } else if (browserName.equalsIgnoreCase("Edge")) {
+        } else if (browser.equalsIgnoreCase("Edge")) {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
-        } else if (browserName.equalsIgnoreCase("Firefox")) {
+        } else if (browser.equalsIgnoreCase("Firefox")) {
             WebDriverManager.firefoxdriver().setup();
             driver= new FirefoxDriver();
         }else {
             System.out.println("Please add browser name");
         }
-        String URL = prop.getProperty("URL");
+
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(URL);

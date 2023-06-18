@@ -21,7 +21,7 @@ public class OnlyPositionsTest extends TestBase {
         if(!DataUtil.isRunnable(excelReader,"OnlyPositions","Testcases") || hMap.get("Runmode").equals("N")){
             throw new SkipException("Run Mode is set as NO , Hence skipping this testcase");
         }
-        driver = openBrowser(hMap.get("Browser"));
+        driver = openBrowser();
         NaukariHomePage naukariHomePage= new NaukariHomePage(driver);
         naukariHomePage.click_SearchJobHere();
         naukariHomePage.click_EnterKeyWord();

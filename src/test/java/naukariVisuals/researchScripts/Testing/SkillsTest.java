@@ -22,7 +22,7 @@ public class SkillsTest extends TestBase {
         if(!DataUtil.isRunnable(excelReader,"Skills","Testcases") || hMap.get("Runmode").equals("N")){
             throw new SkipException("Run Mode is set as NO , Hence skipping this testcase");
         }
-        driver = openBrowser(hMap.get("Browser"));
+        driver = openBrowser();
         NaukariHomePage naukariHomePage= new NaukariHomePage(driver);
         naukariHomePage.click_SearchJobHere();
         naukariHomePage.click_EnterKeyWord();
